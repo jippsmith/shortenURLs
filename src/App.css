@@ -34,9 +34,15 @@
 }
 
 .card {
-  padding: 2em;
+  flex: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
-.read-the-docs {
+.description {
   color: #888;
+  padding-top: 12px;
+  padding-bottom: 24px;
+  font-size: 13px;
 }

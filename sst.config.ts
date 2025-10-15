@@ -10,6 +10,8 @@ export default $config({
     };
   },
   async run() {
+    const api = new sst.aws.ApiGatewayV2("MyApi");
+    api.route("ANY /{proxy+}", { handler: "backend/api.handler" });
     new sst.aws.React("web");
   },
 });

@@ -5,6 +5,10 @@
 
 declare module "sst" {
   export interface Resource {
+    "MyApi": {
+      "type": "sst.aws.ApiGatewayV2"
+      "url": string
+    }
     "web": {
       "type": "sst.aws.React"
       "url": string
