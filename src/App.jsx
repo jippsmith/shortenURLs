@@ -12,7 +12,7 @@ function Download({ htmlShort }) {
       <span className="linkText" onClick={download}>
         HERE
       </span>
-      to download shortened version.
+      to download your shortened version.
     </div>
   );
 }
@@ -33,7 +33,7 @@ const App = observer(() => {
 
   return (
     <>
-      <h1>Shrink your html</h1>
+      <h1>Shrink your HTML</h1>
       <div className="card">
         <input
           type="file"
@@ -45,7 +45,7 @@ const App = observer(() => {
         <button onClick={click} disabled={!htmlFile}>
           Shrink urls
         </button>
-        <div className="description">This will a new smaller file</div>
+        <div className="description">This will create a new smaller file</div>
         <Download {...{ htmlShort }} />
       </div>
     </>
