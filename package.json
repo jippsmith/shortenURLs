@@ -16,6 +16,8 @@
     "axios": "^1.12.2",
     "cheerio": "^1.1.2",
     "lambda-api": "^1.2.0",
+    "mobx": "^6.15.0",
+    "mobx-react-lite": "^4.1.1",
     "nanoid": "^5.1.6",
     "path": "^0.12.7",
     "react": "^19.1.1",

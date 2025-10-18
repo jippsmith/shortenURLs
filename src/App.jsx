@@ -1,20 +1,32 @@
-import { useState } from "react";
+import { Observer, observer } from "mobx-react-lite";
 import "./App.css";
 // import axios from "axios";
-import shortenURL from "./shortenURL";
+import URLStore from "./URLStore";
 
-const API_HOST = "https://q7ch03tyj8.execute-api.us-east-1.amazonaws.com"; // This is terrible practice, I am aware
+function Download({ htmlShort }) {
+  if (!htmlShort) return;
+  const download = () => URLStore.downloadHTML();
+  return (
+    <div className="download">
+      Click
+      <span className="linkText" onClick={download}>
+        HERE
+      </span>
+      to download shortened version.
+    </div>
+  );
+}
 
-function App() {
-  const [html, setHtml] = useState("");
-  // const click = async () => await axios.post(`${API_HOST}/shorten/${html}`);
-  const click = () => shortenURL({ htmlFile: html });
+const App = observer(() => {
+  const { htmlFile, htmlShort } = URLStore || {};
+  const click = () => URLStore.shortenURL();
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (!file) return;
     const reader = new FileReader();
-    reader.onload = (e) => setHtml(e.target.result);
+    reader.onload = (e) => URLStore.setOriginalHTMLFile(e.target.result);
+    // reader.onload = (e) => setHtml(e.target.result);
     reader.onerror = (e) => console.error("Error reading file", e);
     reader.readAsText(file);
   };
@@ -30,15 +42,14 @@ function App() {
           onChange={handleFileChange}
         />
         <div className="description">Enter your html file here</div>
-        <button onClick={click} disabled={!html}>
+        <button onClick={click} disabled={!htmlFile}>
           Shrink urls
         </button>
-        <div className="description">
-          This will also download a new smaller file
-        </div>
+        <div className="description">This will a new smaller file</div>
+        <Download {...{ htmlShort }} />
       </div>
     </>
   );
-}
+});
 
 export default App;
